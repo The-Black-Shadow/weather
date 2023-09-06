@@ -50,7 +50,7 @@ class WeatherScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            '300 F',
+                            '300 K',
                             style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
