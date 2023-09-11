@@ -16,11 +16,12 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  String? cityName;
   Future<Map<String, dynamic>> getCurrentWeather() async {
     await dotenv.load(fileName: ".env"); // Load the .env file
 
     try {
-      String? cityName = 'Barisal';
+      cityName = 'Barisal';
       final apiKey = dotenv.env['weather_api'];
 
       final res = await http.get(Uri.parse(
@@ -59,7 +60,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       body: FutureBuilder(
         future: getCurrentWeather(),
         builder: (context, snapshot) {
-          print(snapshot);
+          //print(snapshot);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator.adaptive(),
@@ -101,6 +102,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
                             children: [
+                              Text(
+                                '$cityName',
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                ),
+                              ),
                               Text(
                                 '$currentTemp°C',
                                 style: const TextStyle(
